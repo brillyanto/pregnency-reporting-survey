@@ -1,0 +1,31 @@
+<div class="custom__grid">
+  <div class="custom__header">
+    <a href="index.html" class="logo">
+      <img src="assets/ucb-logo.png" alt="Company logo" class="logo__img" />
+    </a>
+  </div>
+  <div class="custom__col-fixed">
+    <img src="assets/banner-1.png" alt="banner" class="col__banner" />
+  </div>
+  <div class="custom__col-auto">
+    <!-- <div class="outer"> -->
+    <h3>Would you like to ..</h3>
+    <div class="card">
+      <button class="btn__primary">Report an Adverse Event</button>
+      <button class="btn__primary">Report Product Quality Issue</button>
+    </div>
+    <div class="card">
+      <button class="btn__primary" (click)="onClickNavigateTo()">
+        Report an Adverse Event in Pregnancy
+      </button>
+      <button class="btn__primary">Seek Medical information</button>
+    </div>
+    <div class="card">
+      <button class="btn__primary">Report an Adverse Event in a Child</button>
+      <button class="btn__primary" (click)="navigateToFollowUp()">
+        Add Follow-up to Previous Report
+      </button>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="custom__grid">
+  <div class="custom__header">
+    <a href="index.html" class="logo">
+      <img src="assets/ucb-logo.png" alt="Company logo" class="logo__img" />
+    </a>
+  </div>
+  <div class="custom__col-fixed">
+    <img src="assets/banner-1.png" alt="banner" class="col__banner" />
+  </div>
+  <div class="custom__col-auto">
+    <div class="overlay" *ngIf="showOverlay">
+      <div class="overlay__content">
+        <h3>Enter OTP</h3>
+        <p>OTP has been sent to the registered mobile number ********89</p>
+        <!-- <ng-otp-input
+          (onInputChange)="onOtpChange($event)"
+          [config]="{ length: 5 }"
+        ></ng-otp-input> -->
+        <div class="otp-input-wrapper">
+          <input type="text" class="otp-input" />
+          <input type="text" class="otp-input" />
+          <input type="text" class="otp-input" />
+          <input type="text" class="otp-input" />
+          <input type="text" class="otp-input" />
+        </div>
+        <div class="btn__wrapper">
+          <div class="btn">Submit</div>
+          <div class="btn" (click)="onClickCancel()">Cancel</div>
+        </div>
+      </div>
+    </div>
+    <h3 class="title">follow-up</h3>
+    <p class="text">
+      Please enter the e-mail id and the mobile number associated with the
+      reference number.
+    </p>
+    <form class="form" [formGroup]="followUpForm">
+      <!-- <div class="card"> -->
+      <div class="input-group">
+        <label for="email">email id</label>
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="email id"
+        />
+      </div>
+      <div class="input-group">
+        <label for="mobile">mobile number</label>
+        <input
+          type="text"
+          id="mobile"
+          placeholder="mobile number"
+          formControlName="mobileNumber"
+        />
+      </div>
+      <!-- </div> -->
+      <div class="card card--flex toggle-visibility">
+        <p>OTP will be sent to the registered mobile number ********89</p>
+      </div>
+      <div class="card btn-group">
+        <button
+          class="btn__secondary"
+          *ngIf="showProceedBtn"
+          (click)="onClickProceed()"
+        >
+          proceed
+        </button>
+        <button
+          class="btn__secondary"
+          *ngIf="!showProceedBtn"
+          (click)="onClickVerify()"
+        >
+          verify
+        </button>
+        <button class="btn__secondary" (click)="navigateBackTo()">back</button>
+      </div>
+    </form>
+  </div>
+</div>

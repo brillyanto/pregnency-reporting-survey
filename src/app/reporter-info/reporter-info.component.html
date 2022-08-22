@@ -1,0 +1,78 @@
+<div class="custom__grid">
+  <div class="custom__header">
+    <a href="index.html" class="logo">
+      <img src="assets/ucb-logo.png" alt="Company logo" class="logo__img" />
+    </a>
+  </div>
+  <div class="custom__col-fixed">
+    <img src="assets/banner-1.png" alt="banner" class="col__banner" />
+  </div>
+  <div class="custom__col-auto">
+    <h3>Reporter Information</h3>
+    <form class="form" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+      <div class="card">
+        <div class="input-group">
+          <label for="fullname" class="label">Reporter Fullname</label>
+          <input
+            type="text"
+            formControlName="reporterFullname"
+            id="fullname"
+            placeholder="reporter fullname"
+          />
+        </div>
+        <div class="input-group">
+          <label for="email" class="label">Email</label>
+          <input
+            type="text"
+            formControlName="email"
+            id="email"
+            placeholder="email"
+          />
+        </div>
+      </div>
+      <div class="card">
+        <div class="input-group">
+          <label for="mobile" class="label">Mobile</label>
+          <input
+            type="text"
+            formControlName="mobile"
+            id="mobile"
+            placeholder="mobile"
+          />
+        </div>
+      </div>
+      <div class="card">
+        <h4 class="sub-title">
+          Please read and agree to the consent statement
+        </h4>
+        <div class="card__content">
+          I authorize UCB Pharma SA and any of the relevant UCB Group Company
+          affiliates to collect and analyze the information provided for the
+          purpose of assessing side effects related to my use of a UCB product,
+          and to disclose this information as required by law or regulation to
+          health authorities in my country, and other countries around the
+          world. All information concerning this report as well as any follow up
+          queries for additional medical details will be in compliance with the
+          <a
+            >UCB Patient Safety Reporting Privacy Notice. Read the Privacy
+            Notice</a
+          >
+        </div>
+      </div>
+      <div class="card">
+        <div class="input-group input-group--lg">
+          <input
+            type="checkbox"
+            name="consent"
+            id="consent"
+            formControlName="consent__checkbox"
+          />
+          <label for="consent"
+            >I have read and agree to the consent statement</label
+          >
+        </div>
+      </div>
+      <button class="btn__primary btn__primary--sm">proceed</button>
+    </form>
+  </div>
+</div>

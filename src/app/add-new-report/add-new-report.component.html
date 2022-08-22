@@ -1,0 +1,139 @@
+<div class="grid-flex">
+  <div class="header">
+    <a href="index.html" class="logo">
+      <img src="assets/ucb-logo.png" alt="company logo" class="logo__img" />
+    </a>
+  </div>
+  <div class="main">
+    <!-- <div class="component-wrapper"> -->
+    <form class="form" [formGroup]="multiStep" (ngSubmit)="onSubmit()">
+      <div class="card" *ngIf="step === 1" formGroupName="patientDetails">
+        <h3 class="title">Patient Details</h3>
+        <p class="text sub-title">
+          Could you provide us with the following data from your patient?
+        </p>
+        <div class="field-set">
+          <div class="input-group">
+            <label for="initials">Patient Initials</label>
+            <input
+              type="text"
+              formControlName="patient_initials"
+              id="patient_initials"
+              placeholder="Patient initials"
+            />
+          </div>
+          <div class="input-group">
+            <label for="dob">Patient date of birth</label>
+            <input
+              type="date"
+              formControlName="patient_dob"
+              id="patient_dob"
+              placeholder="Date"
+            />
+          </div>
+        </div>
+        <p class="text">
+          What is the date of the last menstruation and/or estimated date of
+          childbirth?
+        </p>
+        <div class="field-set">
+          <div class="input-group">
+            <label for="menstrual_date"
+              >First day of last menstrual period</label
+            >
+            <input
+              type="date"
+              formControlName="menstrual_date"
+              id="menstural_date"
+              placeholder="Date"
+            />
+          </div>
+          <div class="input-group">
+            <label for="estimated_dob">Estimated Birth date</label>
+            <input
+              type="date"
+              formControlName="estimated_dob"
+              id="estimated_dob"
+              placeholder="Date"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="step === 2">
+        <h3 class="title">Medications</h3>
+        <p class="text">
+          Could you tell us what medication was taken by the patient during
+          pregnancy?
+        </p>
+        <div class="checkbox__group">
+          <!-- <div class="input-set">
+              <div class="form-control"></div>
+            </div> -->
+          <div class="form-control" style="grid-area: cimzia">
+            <input type="checkbox" id="cimzia" />
+            <label for="cimzia">Cimzia</label>
+          </div>
+          <div class="form-control" style="grid-area: levetiracetam">
+            <input type="checkbox" id="levetiracetam" />
+            <label for="levetiracetam">levetiracetam</label>
+          </div>
+          <div class="form-control" style="grid-area: others">
+            <input type="checkbox" id="others" />
+            <label for="others">others</label>
+          </div>
+          <div class="form-control" style="grid-area: briviact">
+            <input type="checkbox" id="briviact" />
+            <label for="briviact">briviact</label>
+          </div>
+          <div class="form-control" style="grid-area: vimpat">
+            <input type="checkbox" id="vimpat" />
+            <label for="vimpat">vimpat</label>
+          </div>
+          <div class="form-control" style="grid-area: keppra">
+            <input type="checkbox" id="keppra" />
+            <label for="keppra">keppra</label>
+          </div>
+          <div class="form-control" style="grid-area: xyrem">
+            <input type="checkbox" id="xyrem" />
+            <label for="xyrem">xyrem</label>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="step === 3">
+        <h3 class="title">Medical History</h3>
+        <p class="text">
+          Please, provide patient´s medical history (free text)
+        </p>
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="8"
+          style="resize: none"
+          placeholder="Medical history"
+        ></textarea>
+      </div>
+      <div class="card" *ngIf="step === 4">card 4</div>
+      <div class="card card__confirmation" *ngIf="step === 5">
+        <div class="content__wrapper">
+          <h4>Confirmation!</h4>
+          <p class="para">Thank you for submitting your report</p>
+          <p class="para">The reference number is</p>
+          <h2>VHS32434YDK</h2>
+          <button class="btn">print pdf report</button>
+        </div>
+      </div>
+    </form>
+    <!-- </div> -->
+    <app-steps *ngIf="step <= 4"></app-steps>
+  </div>
+
+  <div class="footer">
+    <a class="btn__tertiary btn__tertiary--text" (click)="onClickPrev()"
+      >back</a
+    >
+    <button class="btn__tertiary btn__tertiary--active" (click)="onClickNext()">
+      next
+    </button>
+  </div>
+</div>
