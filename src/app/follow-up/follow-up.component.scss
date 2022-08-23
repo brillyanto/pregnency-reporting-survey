@@ -146,11 +146,24 @@
     }
   }
 
-  .input-group {
-    display: inline-block;
-    &:not(:last-child) {
-      margin-right: 62px;
+  div.row{
+    display: flex;
+    justify-content: space-between;
+  }
+  div.txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+      margin-top: 15px;  
     }
+  }
+
+  .input-group {
+    // display: inline-block;
+    // &:not(:last-child) {
+    //   margin-right: 62px;
+    // }
     label {
       font-size: 14px;
       text-transform: capitalize;

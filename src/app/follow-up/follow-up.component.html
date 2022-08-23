@@ -36,27 +36,34 @@
     </p>
     <form class="form" [formGroup]="followUpForm">
       <!-- <div class="card"> -->
-      <div class="input-group">
-        <label for="email">email id</label>
-        <input
-          type="text"
-          id="email"
-          formControlName="email"
-          placeholder="email id"
-        />
-      </div>
-      <div class="input-group">
-        <label for="mobile">mobile number</label>
-        <input
-          type="text"
-          id="mobile"
-          placeholder="mobile number"
-          formControlName="mobileNumber"
-        />
-      </div>
-      <!-- </div> -->
+        <div class="row">
+          <div class="input-group">
+            <label for="email">email id</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              placeholder="email id"
+            />
+          </div>
+          <div class="txt">
+            <span>OR</span>
+          </div>
+          <div class="input-group">
+            <label for="mobile">mobile number</label>
+            <input
+              type="text"
+              id="mobile"
+              placeholder="mobile number"
+              formControlName="mobileNumber"
+            />
+          </div>
+          <!-- </div> -->
+        </div>
+        <!-- end of .row -->
       <div class="card card--flex toggle-visibility">
-        <p>OTP will be sent to the registered mobile number ********89</p>
+        <p *ngIf="followUpForm.value.email">OTP will be sent to {{followUpForm.value.email}}</p>
+        <p *ngIf="followUpForm.value.mobileNumber && !followUpForm.value.email">OTP will be sent to the registered mobile number {{followUpForm.value.mobileNumber}}</p>
       </div>
       <div class="card btn-group">
         <button
