@@ -11,12 +11,14 @@
     <div class="overlay" *ngIf="showOverlay">
       <div class="overlay__content">
         <h3>Enter OTP</h3>
-        <p>OTP has been sent to the registered mobile number ********89</p>
+        <p *ngIf="followUpForm.value.email">OTP has been sent to {{followUpForm.value.email}}</p>
+        <p *ngIf="followUpForm.value.mobileNumber && !followUpForm.value.email">OTP has been sent to the mobile number {{followUpForm.value.mobileNumber}}</p>
         <!-- <ng-otp-input
           (onInputChange)="onOtpChange($event)"
           [config]="{ length: 5 }"
         ></ng-otp-input> -->
         <div class="otp-input-wrapper">
+          <input type="text" class="otp-input" />
           <input type="text" class="otp-input" />
           <input type="text" class="otp-input" />
           <input type="text" class="otp-input" />
