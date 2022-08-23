@@ -44,5 +44,8 @@ mobile: ${this.followUpForm.get('mobileNumber')!.value}
   onClickCancel() {
     this.showOverlay = false;
   }
+  onClickSubmit() {
+    this.router.navigate(['/generate-report']);
+  }
   // onOtpChange($event: any) {}
 }

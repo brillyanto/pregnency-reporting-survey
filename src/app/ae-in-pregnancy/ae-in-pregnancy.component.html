@@ -10,12 +10,14 @@
   </div>
   <div class="custom__col-auto">
     <!-- <div class="outer"> -->
-    <h3>Who are you?</h3>
+    <h3>Please tell something about yourself..</h3>
     <div class="card">
-      <button class="btn__primary">patient</button>
+      <button class="btn__primary" (click)="onClickNavigateTo()">
+        patient
+      </button>
     </div>
     <div class="card">
-      <button class="btn__primary">HCP</button>
+      <button class="btn__primary" (click)="onClickNavigateTo()">HCP</button>
     </div>
     <div class="card">
       <button class="btn__primary" (click)="onClickNavigateTo()">
