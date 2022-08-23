@@ -78,6 +78,12 @@
         display: inline-block;
         font-size: 16px;
       }
+      .asterisk {
+        font-size: 14px;
+        color: red;
+        display: inline-block;
+        transform: translateY(-2px);
+      }
       input[type="text"] {
         display: block;
         border: 1px solid #0000001f;

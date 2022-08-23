@@ -47,5 +47,8 @@ export class FollowUpComponent implements OnInit {
   onClickCancel() {
     this.showOverlay = false;
   }
+  onClickSubmit() {
+    this.router.navigate(['/generate-report']);
+  }
   // onOtpChange($event: any) {}
 }

@@ -12,16 +12,17 @@
     <form class="form" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
       <div class="card">
         <div class="input-group">
-          <label for="fullname" class="label">Reporter Fullname</label>
+          <label for="fullname" class="label">Your name</label>
           <input
             type="text"
             formControlName="reporterFullname"
             id="fullname"
-            placeholder="reporter fullname"
+            placeholder="Your name"
           />
         </div>
         <div class="input-group">
           <label for="email" class="label">Email</label>
+          <span class="asterisk">*</span>
           <input
             type="text"
             formControlName="email"
@@ -53,7 +54,7 @@
           health authorities in my country, and other countries around the
           world. All information concerning this report as well as any follow up
           queries for additional medical details will be in compliance with the
-          <a
+          <a href="javascript:void(0)"
             >UCB Patient Safety Reporting Privacy Notice. Read the Privacy
             Notice</a
           >

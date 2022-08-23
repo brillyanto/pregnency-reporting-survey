@@ -4,6 +4,7 @@ import { AddFollowUpComponent } from './add-follow-up/add-follow-up.component';
 import { AddNewReportComponent } from './add-new-report/add-new-report.component';
 import { AeInPregnancyComponent } from './ae-in-pregnancy/ae-in-pregnancy.component';
 import { FollowUpComponent } from './follow-up/follow-up.component';
+import { GenerateReportComponent } from './generate-report/generate-report.component';
 import { MainComponent } from './main/main.component';
 
 import { ReporterInfoComponent } from './reporter-info/reporter-info.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'add-new-report',
     component: AddNewReportComponent,
   },
+  { path: 'generate-report', component: GenerateReportComponent },
 ];
 
 @NgModule({

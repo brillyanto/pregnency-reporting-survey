@@ -13,10 +13,10 @@ import { AddFollowUpComponent } from './add-follow-up/add-follow-up.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AddNewReportComponent } from './add-new-report/add-new-report.component';
 import { StepsComponent } from './add-new-report/steps/steps.component';
-// import { CheckboxModule } from 'primeng/checkbox';
-// import { MedicationDetailsComponent } from './add-new-report/medication-details/medication-details.component';
-// import { MedicalHistoryComponent } from './add-new-report/medical-history/medical-history.component';
-// import { ComplicationsComponent } from './add-new-report/complications/complications.component';
+import { TabViewModule } from 'primeng/tabview';
+import { DropdownModule } from 'primeng/dropdown';
+import { GenerateReportComponent } from './generate-report/generate-report.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -29,9 +29,7 @@ import { StepsComponent } from './add-new-report/steps/steps.component';
     AddFollowUpComponent,
     AddNewReportComponent,
     StepsComponent,
-    // MedicationDetailsComponent,
-    // MedicalHistoryComponent,
-    // ComplicationsComponent,
+    GenerateReportComponent,
   ],
   imports: [
     FormsModule,
@@ -39,6 +37,9 @@ import { StepsComponent } from './add-new-report/steps/steps.component';
     AppRoutingModule,
     ReactiveFormsModule,
     NgOtpInputModule,
+    TabViewModule,
+    DropdownModule,
+    TableModule,
     // CheckboxModule,
   ],
   providers: [],
