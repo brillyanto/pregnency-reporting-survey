@@ -100,7 +100,7 @@
             <label for="xyrem">xyrem</label>
           </div>
         </div>
-        <div class="tab__group">
+        <div class="tab__group" *ngIf="multiStep.controls.drugs.length > 0">
           <p>
             Drug name/dosage/indication/start and end dates of treatment of the
             drugs indicated in the previous question.
