@@ -16,10 +16,7 @@ const routes: Routes = [
   { path: 'follow-up', component: FollowUpComponent },
   { path: 'ae-in-pregnancy', component: AeInPregnancyComponent },
   { path: 'reporter-info', component: ReporterInfoComponent },
-  {
-    path: 'add-new-report',
-    component: AddNewReportComponent,
-  },
+  { path: 'add-new-report', component: AddNewReportComponent },
   { path: 'generate-report', component: GenerateReportComponent },
 ];
 

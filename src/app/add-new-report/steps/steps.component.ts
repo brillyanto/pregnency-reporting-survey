@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-steps',
   templateUrl: './steps.component.html',
-  styleUrls: ['./steps.component.scss']
+  styleUrls: ['./steps.component.scss'],
 })
 export class StepsComponent implements OnInit {
+  // @Input() index: number;
+  _count: number = 0;
+  prevSibling: any;
+  element: any;
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
-  constructor() { }
+  @Input()
+  set count(count: number) {
+    this._count = count;
+    console.log(count);
+    this.element = this.elRef.nativeElement.querySelector(
+      `.progress__list-step:nth-child(${count})`
+    );
+    if (count > 1) {
+      this.prevSibling = this.element.previousElementSibling;
+      this.renderer.removeClass(this.prevSibling, 'active');
+      this.renderer.addClass(this.prevSibling, 'success');
+    }
 
-  ngOnInit(): void {
+    this.renderer.addClass(this.element, 'active');
+
+    // this.renderer.removeClass(this.prevSibling, 'active');
+    // console.log(this.prevSibling);
+    // this.renderer.removeClass(this.prevSibling,'active');
+
+    // this.index = this._count;
+    // console.log(this.index);
   }
-
+  ngOnInit(): void {
+    // console.log(this.index);
+  }
 }

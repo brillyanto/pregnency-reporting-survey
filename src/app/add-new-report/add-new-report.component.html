@@ -488,7 +488,7 @@
       </div>
     </form>
     <!-- </div> -->
-    <app-steps *ngIf="step <= 4"></app-steps>
+    <app-steps *ngIf="step <= 4" [count]="activeIndex"></app-steps>
   </div>
 
   <div class="footer" *ngIf="step <= 4">

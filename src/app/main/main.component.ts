@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 import { HttpHeaders } from '@angular/common/http';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-main',
@@ -11,16 +11,15 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  private base64Key = 'aGlsaXRsZGFwc2NydGtleQ==';
+  // key = CryptoJS.enc.Base64.parse(this.base64Key);
 
-  private base64Key = "aGlsaXRsZGFwc2NydGtleQ==";
-  key = CryptoJS.enc.Base64.parse(this.base64Key);
-  
-  constructor(private http:HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // decryptResponse(response:any){
 
   //   let decodeBase64: CryptoJS.lib.WordArray = CryptoJS.enc.Base64.parse(response);
-   
+
   //   let decryptedData = CryptoJS.AES.decrypt(
   //     { ciphertext: decodeBase64 },
   //     this.key,
@@ -42,19 +41,26 @@ export class MainComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    const headers = new HttpHeaders({ 'Accept': 'application/json, text/plain', 'Environment': 'qa' });
-    const token = '/vqS4xDdxze3CRsItCG57J+J5/qwcKtsjK+oQJF1YR/U4xTYcWYsk/hHQCloeKuA8SiUoFRTkjLeF/KBUux7WNmIHbx8ZPCM0S/gYasQzwdhqd2CShE6ccNwayKqqwI0Aniw8CVj33MmpL3ywhNVfw==';
-    this.http.post('http://172.168.1.82:8080/hilitloginservice/authenticate/v1',  token, {headers})
-    .subscribe((res:any)=>{
-      
-      console.log('response',res);
-      console.log(res.token);
-      // let userObj = this.decryptResponse(res);
-      // AuthInterceptor.accessToken   = userObj.accessToken;
-
-    })
+    const headers = new HttpHeaders({
+      Accept: 'application/json, text/plain',
+      Environment: 'qa',
+    });
+    const token =
+      '/vqS4xDdxze3CRsItCG57J+J5/qwcKtsjK+oQJF1YR/U4xTYcWYsk/hHQCloeKuA8SiUoFRTkjLeF/KBUux7WNmIHbx8ZPCM0S/gYasQzwdhqd2CShE6ccNwayKqqwI0Aniw8CVj33MmpL3ywhNVfw==';
+    this.http
+      .post(
+        'http://172.168.1.82:8080/hilitloginservice/authenticate/v1',
+        token,
+        { headers }
+      )
+      .subscribe((res: any) => {
+        console.log('response', res);
+        console.log(res.token);
+        // let userObj = this.decryptResponse(res);
+        // AuthInterceptor.accessToken   = userObj.accessToken;
+      });
   }
   onClickNavigate() {
-    this.router.navigate(['/add-follow-up']);    
+    this.router.navigate(['/add-follow-up']);
   }
 }
