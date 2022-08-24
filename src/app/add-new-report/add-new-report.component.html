@@ -108,7 +108,7 @@
           <p-tabView>
             <ng-container formArrayName="medicationArray">
               <ng-container  *ngFor="let med of multiStep.controls.medicationArray['controls']; let i = index;" [formGroupName]="i">
-              <p-tabPanel header="Medication 1" >
+              <p-tabPanel header="Medication {{i+1}}" >
                 <div class="inputs">
                   <div class="input-control">
                     <label for="drugName" >Drug Name</label>
@@ -120,7 +120,7 @@
                   </div>
 
                   <div class="input-control">
-                    <label for="drugName" >Drug Name</label>
+                    <label for="dosage" >Dosage</label>
                     <div class="input-control--group">
                       <input type="text" class="input--sm"
                       id="dosage" placeholder="Dose" formControlName="dosage" />

@@ -71,14 +71,8 @@ export class AddNewReportComponent implements OnInit {
         i++;
       });
     }
-
-
-
     // console.log(drugsArrayTemp.value);
-
-   
-
-    if(e.target.checked){
+      if(e.target.checked){
       const medication = new FormGroup({
         drugName : new FormControl(e.target.value),
         dosage : new FormControl(''),
