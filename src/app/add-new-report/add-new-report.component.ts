@@ -17,58 +17,52 @@ export class AddNewReportComponent implements OnInit {
   // reactiveForm: FormGroup;
   // frequencies: Frequency[];
   // selectedFrequency: Frequency;
-<<<<<<< HEAD
+  // <<<<<<< HEAD
   activeIndex = 1;
-=======
+  // =======
 
   public surveyJson = {
     patient: {
-        patientInitials: "VM",
-        patientDateOfBirth: "22-08-2022 09:06:55",
-        estimatedBirthDate: "22-08-2022 09:06:55",
-        firstDayLMP: "22-08-2022 09:06:55"
+      patientInitials: 'VM',
+      patientDateOfBirth: '22-08-2022 09:06:55',
+      estimatedBirthDate: '22-08-2022 09:06:55',
+      firstDayLMP: '22-08-2022 09:06:55',
     },
     product: [
-        {
-            medicationTakenByPatient: [
-                "CIMZIA"
-            ],
-            
-            regimen: {
-                drugName: "Prothiaden",
-                indication: "AHUS",
-                dose: "1",
-                units: "mg",
-                frequency: "regular",
-                startDate: "22-08-2022 09:06:55",
-                endDate: "22-08-2022 09:06:55"
-            }
-        }
+      {
+        medicationTakenByPatient: ['CIMZIA'],
+
+        regimen: {
+          drugName: 'Prothiaden',
+          indication: 'AHUS',
+          dose: '1',
+          units: 'mg',
+          frequency: 'regular',
+          startDate: '22-08-2022 09:06:55',
+          endDate: '22-08-2022 09:06:55',
+        },
+      },
     ],
     medicalHistory: {
-        patientMedicalHistory: "value"
+      patientMedicalHistory: 'value',
     },
     complications: {
-        previousPregnancyComplications: [
-            "Unknown"
-        ],
-        pregnancyOutcomeDate: "22-08-2022 09:06:55",
-        pregnancyOutcome: [
-            "Miscarriage"
-        ],
-        height: 123,
-        heightUnits: "CM",
-        weight: 80,
-        weightUnits: "Kilogram",
-        newBornGender: "Male",
-        apgarScore: "100",
-        newBornSufferedCongInfo: "yes",
-        riskFactorsForReportedMalformations: "Miscarriage",
-        congMalfRelatedToMedications: "yes"
-    }
-};
+      previousPregnancyComplications: ['Unknown'],
+      pregnancyOutcomeDate: '22-08-2022 09:06:55',
+      pregnancyOutcome: ['Miscarriage'],
+      height: 123,
+      heightUnits: 'CM',
+      weight: 80,
+      weightUnits: 'Kilogram',
+      newBornGender: 'Male',
+      apgarScore: '100',
+      newBornSufferedCongInfo: 'yes',
+      riskFactorsForReportedMalformations: 'Miscarriage',
+      congMalfRelatedToMedications: 'yes',
+    },
+  };
 
->>>>>>> 4784c0793ea257eed09d681e47d88d70b5dd0bb8
+  // >>>>>>> 4784c0793ea257eed09d681e47d88d70b5dd0bb8
   mainEl: any;
   step = 1;
   currentStep: any;
@@ -147,17 +141,18 @@ export class AddNewReportComponent implements OnInit {
     return this.multiStep.get('drugs') as FormArray;
   }
 
-  constructor(private http:HttpClient, 
-    private router:Router,
-    private elRef: ElementRef, private renderer: Renderer2) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private elRef: ElementRef,
+    private renderer: Renderer2
+  ) {
     // this.frequencies = [
     //   { name: 'Regular' },
     //   { name: 'Weekly' },
     //   { name: 'Monthly' },
     // ];
-    
     //console.log(JSON.stringify(this.surveyJson));
-
   }
 
   ngOnInit(): void {
@@ -171,7 +166,6 @@ export class AddNewReportComponent implements OnInit {
   onClickNext() {
     this.activeIndex++;
     if (this.step === 5) {
-      
       return;
     } else {
       this.step = this.step + 1;
