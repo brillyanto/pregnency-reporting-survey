@@ -422,11 +422,22 @@
   </div>
 
   <div class="footer" *ngIf="step <= 4">
-    <a class="btn__tertiary btn__tertiary--text" (click)="onClickPrev()"
+
+    <a *ngIf="step === 1" id="prevbtn"  class="btn__tertiary btn__tertiary--text" (click)="onClickPrev()"
       >back</a
     >
-    <button class="btn__tertiary btn__tertiary--active" (click)="onClickNext()">
+
+    <a *ngIf="step > 1" id="prevbtn"  class="btn__tertiary btn__tertiary--active" (click)="onClickPrev()"
+      >back</a
+    >
+
+    <button *ngIf="step < 4" id="nextbtn" class="btn__tertiary btn__tertiary--active" (click)="onClickNext()">
       next
     </button>
+
+    <button *ngIf="step === 4" id="submitbtn" type="submit" class="btn__tertiary btn__tertiary--active" (click)="onSubmit()">
+      Submit
+    </button>
+
   </div>
 </div>
