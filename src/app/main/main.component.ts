@@ -17,29 +17,29 @@ export class MainComponent implements OnInit {
   
   constructor(private http:HttpClient, private router: Router) {}
 
-  decryptResponse(response:any){
+  // decryptResponse(response:any){
 
-    let decodeBase64: CryptoJS.lib.WordArray = CryptoJS.enc.Base64.parse(response);
+  //   let decodeBase64: CryptoJS.lib.WordArray = CryptoJS.enc.Base64.parse(response);
    
-    let decryptedData = CryptoJS.AES.decrypt(
-      { ciphertext: decodeBase64 },
-      this.key,
-      {
-        mode: CryptoJS.mode.ECB,
-        padding: CryptoJS.pad.Pkcs7
-      }
-    );
+  //   let decryptedData = CryptoJS.AES.decrypt(
+  //     { ciphertext: decodeBase64 },
+  //     this.key,
+  //     {
+  //       mode: CryptoJS.mode.ECB,
+  //       padding: CryptoJS.pad.Pkcs7
+  //     }
+  //   );
 
-    const decryptedText = decryptedData.toString(CryptoJS.enc.Utf8);
-    const str = (decryptedText.substring(decryptedText.lastIndexOf("::")+2,decryptedText.length));
-    const saltLength = parseInt(str)
-    const saltTrailingCount = 2 + str.length;
-    const totalSaltLength = saltLength + saltTrailingCount;
-    const decrypted = decryptedText.substring(0,decryptedText.length - totalSaltLength);
-    const value= JSON.parse(decrypted);
-    return value;
+  //   const decryptedText = decryptedData.toString(CryptoJS.enc.Utf8);
+  //   const str = (decryptedText.substring(decryptedText.lastIndexOf("::")+2,decryptedText.length));
+  //   const saltLength = parseInt(str)
+  //   const saltTrailingCount = 2 + str.length;
+  //   const totalSaltLength = saltLength + saltTrailingCount;
+  //   const decrypted = decryptedText.substring(0,decryptedText.length - totalSaltLength);
+  //   const value= JSON.parse(decrypted);
+  //   return value;
 
-  }
+  // }
 
   ngOnInit(): void {
     const headers = new HttpHeaders({ 'Accept': 'application/json, text/plain', 'Environment': 'qa' });
@@ -48,9 +48,9 @@ export class MainComponent implements OnInit {
     .subscribe((res:any)=>{
       
       console.log('response',res);
-
-      let userObj = this.decryptResponse(res);
-      AuthInterceptor.accessToken   = userObj.accessToken;
+      console.log(res.token);
+      // let userObj = this.decryptResponse(res);
+      // AuthInterceptor.accessToken   = userObj.accessToken;
 
     })
   }
