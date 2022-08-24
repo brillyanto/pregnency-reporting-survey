@@ -69,34 +69,76 @@
           <!-- <div class="input-set">
               <div class="form-control"></div>
             </div> -->
-           
+
           <div class="form-control">
-            <input type="checkbox" id="cimzia" value="Cimzia"  (change)="onDrugsChange($event)" formArrayName="drugs" />
+            <input
+              type="checkbox"
+              id="cimzia"
+              value="Cimzia"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="cimzia">Cimzia</label>
           </div>
-           
+
           <div class="form-control" style="grid-area: levetiracetam">
-            <input type="checkbox" id="levetiracetam" value="Levetiracetam" (change)="onDrugsChange($event)" formArrayName="drugs"/>
+            <input
+              type="checkbox"
+              id="levetiracetam"
+              value="Levetiracetam"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="levetiracetam">levetiracetam</label>
           </div>
           <div class="form-control" style="grid-area: others">
-            <input type="checkbox" id="others" value="Others" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
+            <input
+              type="checkbox"
+              id="others"
+              value="Others"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="others">others</label>
           </div>
           <div class="form-control" style="grid-area: briviact">
-            <input type="checkbox" id="briviact" value="Briviact" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
+            <input
+              type="checkbox"
+              id="briviact"
+              value="Briviact"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="briviact">briviact</label>
           </div>
           <div class="form-control" style="grid-area: vimpat">
-            <input type="checkbox" id="vimpat" value="Vimpat" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
+            <input
+              type="checkbox"
+              id="vimpat"
+              value="Vimpat"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="vimpat">vimpat</label>
           </div>
           <div class="form-control" style="grid-area: keppra">
-            <input type="checkbox" id="keppra" value="Keppra" (change)="onDrugsChange($event)" formArrayName="drugs" />
+            <input
+              type="checkbox"
+              id="keppra"
+              value="Keppra"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="keppra">keppra</label>
           </div>
           <div class="form-control" style="grid-area: xyrem">
-            <input type="checkbox" id="xyrem" value="Xyrem" (change)="onDrugsChange($event)" formArrayName="drugs" />
+            <input
+              type="checkbox"
+              id="xyrem"
+              value="Xyrem"
+              (change)="onDrugsChange($event)"
+              formArrayName="drugs"
+            />
             <label for="xyrem">xyrem</label>
           </div>
         </div>
@@ -107,73 +149,96 @@
           </p>
           <p-tabView>
             <ng-container formArrayName="medicationArray">
-              <ng-container  *ngFor="let med of multiStep.controls.medicationArray['controls']; let i = index;" [formGroupName]="i">
-              <p-tabPanel header="Medication {{i+1}}" >
-                <div class="inputs">
-                  <div class="input-control">
-                    <label for="drugName" >Drug Name</label>
-                    <input
-                        type="text" 
-                        id="drugName" formControlName="drugName"
+              <ng-container
+                *ngFor="
+                  let med of multiStep.controls.medicationArray['controls'];
+                  let i = index
+                "
+                [formGroupName]="i"
+              >
+                <p-tabPanel header="Medication {{ i + 1 }}">
+                  <div class="input-group">
+                    <div class="form-control">
+                      <label for="drugName">Drug Name</label>
+                      <input
+                        type="text"
+                        id="drugName"
+                        formControlName="drugName"
                         placeholder="Name of the Medication"
                       />
-                  </div>
+                    </div>
 
-                  <div class="input-control">
-                    <label for="dosage" >Dosage</label>
-                    <div class="input-control--group">
-                      <input type="text" class="input--sm"
-                      id="dosage" placeholder="Dose" formControlName="dosage" />
-                      <select id="dosageUnit" formControlName="dosageUnit"  >
-                        <option value="Mg">mg</option>
-                        <option value="ml">ml</option>
-                        <option value="drops">drops</option>
+                    <div class="form-control">
+                      <label for="dosage">Dosage</label>
+                      <div class="input-group-wrapper">
+                        <input
+                          type="text"
+                          class="input--sm"
+                          id="dosage"
+                          placeholder="Dose"
+                          formControlName="dosage"
+                        />
+                        <select id="dosageUnit" formControlName="dosageUnit">
+                          <option value="" disabled selected>Unit</option>
+                          <option value="Mg">mg</option>
+                          <option value="ml">ml</option>
+                          <option value="drops">drops</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-control">
+                      <label for="frequency">Frequency</label>
+
+                      <select id="frequency" formControlName="frequency">
+                        <option value="" disabled selected>Unit</option>
+                        <option value="regular">Regular</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
                       </select>
                     </div>
                   </div>
 
-                  <div class="input-control">
-                    <label for="frequency">Frequency</label>
-                    <select id="frequency" formControlName="frequency">
-                      <option value="regular">Regular</option>
-                      <option value="weekly">Weekly</option>
-                      <option value="monthly">Monthly</option>
-                    </select>
+                  <p style="margin-bottom: 2px; margin-top: 20px">
+                    When did the patient start/stop the medication?
+                  </p>
+                  <div class="input-group">
+                    <div class="form-control">
+                      <input
+                        type="Date"
+                        id="startDate"
+                        formControlName="startMedicationDate"
+                        placeholder="Start Date"
+                      />
+                    </div>
+                    <div class="form-control">
+                      <input
+                        type="Date"
+                        id="stopDate"
+                        formControlName="stopMedicationDate"
+                        placeholder="Stop Date"
+                      />
+                    </div>
                   </div>
-
-                </div>
-
-                <p style="margin-bottom: 2px; margin-top: 20px">
-                  When did the patient start/stop the medication?
-                </p>
-                <div class="input-group">
-                  <div class="form-control">
-                    <input type="Date" id="startDate" formControlName="startMedicationDate" placeholder="Start Date" />
+                  <div>
+                    <label
+                      for="textarea"
+                      style="display: inline-block; margin-top: 20px"
+                      >Indication</label
+                    >
+                    <textarea
+                      class="textarea textarea--sm"
+                      id="textarea"
+                      cols="30"
+                      rows="10"
+                      placeholder="indication"
+                      style="resize: none"
+                      formControlName="indication"
+                    ></textarea>
                   </div>
-                  <div class="form-control">
-                    <input type="Date" id="stopDate" formControlName="stopMedicationDate" placeholder="Stop Date" />
-                  </div>
-                </div>
-                <div>
-                <label
-                  for="textarea"
-                  style="display: inline-block; margin-top: 20px"
-                  >Indication</label
-                >
-                <textarea
-                  class="textarea textarea--sm"
-                  id="textarea"
-                  cols="30"
-                  rows="10"
-                  placeholder="indication"
-                  style="resize: none"
-                  formControlName="indication"
-                ></textarea>
-                </div>
-              </p-tabPanel>
+                </p-tabPanel>
               </ng-container>
             </ng-container>
-
           </p-tabView>
         </div>
       </div>
@@ -194,7 +259,7 @@
       </div>
       <div class="card" *ngIf="step === 4">
         <h3 class="card__title">Complications</h3>
-        
+
         <p class="section__title">
           During the previous pregnancies did the patient experience any of the
           following complications?
@@ -315,27 +380,29 @@
           <div class="input-control">
             <label>Length</label>
             <div class="input-control--group">
-              <input type="text" class="input input--sm" />
+              <input type="text" class="input input--sm" placeholder="Height" />
               <select>
+                <option value="" disabled selected>Unit</option>
                 <option value="cm">Cm</option>
                 <option value="inch">Inch</option>
               </select>
             </div>
           </div>
           <div class="input-control">
-            <label>Length</label>
+            <label>Weight</label>
             <div class="input-control--group">
-              <input type="text" class="input input--sm" />
+              <input type="text" class="input input--sm" placeholder="Weight" />
               <select>
-                <option value="cm">Cm</option>
-                <option value="inch">Inch</option>
+                <option value="" disabled selected>Unit</option>
+                <option value="cm">Kg</option>
+                <option value="inch">Pound</option>
               </select>
             </div>
           </div>
           <div class="input-control">
-            <label>Length</label>
+            <label>Apgar Score</label>
             <div class="input-control--group">
-              <input type="text" class="input" />
+              <input type="text" class="input" placeholder="Score" />
             </div>
           </div>
         </div>
