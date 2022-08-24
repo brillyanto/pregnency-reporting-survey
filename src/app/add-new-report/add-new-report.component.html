@@ -69,32 +69,34 @@
           <!-- <div class="input-set">
               <div class="form-control"></div>
             </div> -->
-          <div class="form-control" style="grid-area: cimzia">
-            <input type="checkbox" id="cimzia" />
+           
+          <div class="form-control">
+            <input type="checkbox" id="cimzia" value="Cimzia"  (change)="onDrugsChange($event)" formArrayName="drugs" />
             <label for="cimzia">Cimzia</label>
           </div>
+           
           <div class="form-control" style="grid-area: levetiracetam">
-            <input type="checkbox" id="levetiracetam" />
+            <input type="checkbox" id="levetiracetam" value="Levetiracetam" (change)="onDrugsChange($event)" formArrayName="drugs"/>
             <label for="levetiracetam">levetiracetam</label>
           </div>
           <div class="form-control" style="grid-area: others">
-            <input type="checkbox" id="others" />
+            <input type="checkbox" id="others" value="Others" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
             <label for="others">others</label>
           </div>
           <div class="form-control" style="grid-area: briviact">
-            <input type="checkbox" id="briviact" />
+            <input type="checkbox" id="briviact" value="Briviact" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
             <label for="briviact">briviact</label>
           </div>
           <div class="form-control" style="grid-area: vimpat">
-            <input type="checkbox" id="vimpat" />
+            <input type="checkbox" id="vimpat" value="Vimpat" (change)="onDrugsChange($event)"  formArrayName="drugs"/>
             <label for="vimpat">vimpat</label>
           </div>
           <div class="form-control" style="grid-area: keppra">
-            <input type="checkbox" id="keppra" />
+            <input type="checkbox" id="keppra" value="Keppra" (change)="onDrugsChange($event)" formArrayName="drugs" />
             <label for="keppra">keppra</label>
           </div>
           <div class="form-control" style="grid-area: xyrem">
-            <input type="checkbox" id="xyrem" />
+            <input type="checkbox" id="xyrem" value="Xyrem" (change)="onDrugsChange($event)" formArrayName="drugs" />
             <label for="xyrem">xyrem</label>
           </div>
         </div>
@@ -104,103 +106,74 @@
             drugs indicated in the previous question.
           </p>
           <p-tabView>
-            <p-tabPanel header="Medication 1">
-              <div class="input-group">
-                <div class="form-control">
-                  <label for="drugName">Drug Name</label>
-                  <input
-                    type="text"
-                    id="drugName"
-                    placeholder="Name of the Medication"
-                  />
+            <ng-container formArrayName="medicationArray">
+              <ng-container  *ngFor="let med of multiStep.controls.medicationArray['controls']; let i = index;" [formGroupName]="i">
+              <p-tabPanel header="Medication 1" >
+                <div class="inputs">
+                  <div class="input-control">
+                    <label for="drugName" >Drug Name</label>
+                    <input
+                        type="text" 
+                        id="drugName" formControlName="drugName"
+                        placeholder="Name of the Medication"
+                      />
+                  </div>
+
+                  <div class="input-control">
+                    <label for="drugName" >Drug Name</label>
+                    <div class="input-control--group">
+                      <input type="text" class="input--sm"
+                      id="dosage" placeholder="Dose" formControlName="dosage" />
+                      <select id="dosageUnit" formControlName="dosageUnit"  >
+                        <option value="Mg">mg</option>
+                        <option value="ml">ml</option>
+                        <option value="drops">drops</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="input-control">
+                    <label for="frequency">Frequency</label>
+                    <select id="frequency" formControlName="frequency">
+                      <option value="regular">Regular</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="monthly">Monthly</option>
+                    </select>
+                  </div>
+
                 </div>
-                <div class="form-control">
-                  <label for="drugName">Drug Name</label>
-                  <input type="text" id="drugName" placeholder="Dose" />
+
+                <p style="margin-bottom: 2px; margin-top: 20px">
+                  When did the patient start/stop the medication?
+                </p>
+                <div class="input-group">
+                  <div class="form-control">
+                    <input type="Date" id="startDate" formControlName="startMedicationDate" placeholder="Start Date" />
+                  </div>
+                  <div class="form-control">
+                    <input type="Date" id="stopDate" formControlName="stopMedicationDate" placeholder="Stop Date" />
+                  </div>
                 </div>
-                <div class="form-control">
-                  <select>
-                    <option value="regular">Regular</option>
-                    <option value="regular">Weekly</option>
-                    <option value="regular">Monthly</option>
-                  </select>
+                <div>
+                <label
+                  for="textarea"
+                  style="display: inline-block; margin-top: 20px"
+                  >Indication</label
+                >
+                <textarea
+                  class="textarea textarea--sm"
+                  id="textarea"
+                  cols="30"
+                  rows="10"
+                  placeholder="indication"
+                  style="resize: none"
+                  formControlName="indication"
+                ></textarea>
                 </div>
-              </div>
-              <p style="margin-bottom: 2px; margin-top: 20px">
-                When did the patient start/stop the medication?
-              </p>
-              <div class="input-group">
-                <div class="form-control">
-                  <input type="Date" id="startDate" placeholder="Start Date" />
-                </div>
-                <div class="form-control">
-                  <input type="Date" id="stopDate" placeholder="Stop Date" />
-                </div>
-              </div>
-              <!-- <div> -->
-              <label
-                for="textarea"
-                style="display: inline-block; margin-top: 20px"
-                >Indication</label
-              >
-              <textarea
-                class="textarea textarea--sm"
-                id="textarea"
-                cols="30"
-                rows="10"
-                placeholder="indication"
-                style="resize: none"
-              ></textarea>
-              <!-- </div> -->
-            </p-tabPanel>
-            <p-tabPanel header="Medication 2">
-              <div class="input-group">
-                <div class="form-control">
-                  <label for="drugName">Drug Name</label>
-                  <input
-                    type="text"
-                    id="drugName"
-                    placeholder="Name of the Medication"
-                  />
-                </div>
-                <div class="form-control">
-                  <label for="drugName">Drug Name</label>
-                  <input type="text" id="drugName" placeholder="Dose" />
-                </div>
-                <div class="form-control">
-                  <select>
-                    <option value="regular">Regular</option>
-                    <option value="regular">Weekly</option>
-                    <option value="regular">Monthly</option>
-                  </select>
-                </div>
-              </div>
-              <p style="margin-bottom: 2px; margin-top: 20px">
-                When did the patient start/stop the medication?
-              </p>
-              <div class="input-group">
-                <div class="form-control">
-                  <input type="Date" id="startDate" placeholder="Start Date" />
-                </div>
-                <div class="form-control">
-                  <input type="Date" id="stopDate" placeholder="Stop Date" />
-                </div>
-              </div>
-              <!-- <div> -->
-              <label
-                for="textarea"
-                style="display: inline-block; margin-top: 20px"
-                >Indication</label
-              >
-              <textarea
-                class="textarea textarea--sm"
-                id="textarea"
-                cols="30"
-                rows="10"
-                placeholder="indication"
-                style="resize: none"
-              ></textarea>
-            </p-tabPanel>
+              </p-tabPanel>
+              </ng-container>
+            </ng-container>
+
           </p-tabView>
         </div>
       </div>
@@ -221,7 +194,7 @@
       </div>
       <div class="card" *ngIf="step === 4">
         <h3 class="card__title">Complications</h3>
-
+        
         <p class="section__title">
           During the previous pregnancies did the patient experience any of the
           following complications?
@@ -411,7 +384,7 @@
       </div>
       <div class="card card__confirmation" *ngIf="step === 5">
         <div class="content__wrapper">
-          <h4>Confirmation!</h4>
+          <h4>Thank You!</h4>
           <p class="para">
             Your report has been successfully submitted and will be reviewed.
             <br />

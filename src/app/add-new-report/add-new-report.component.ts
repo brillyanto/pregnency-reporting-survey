@@ -1,6 +1,6 @@
 // import { style } from '@angular/animations';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormControl, FormGroup } from '@angular/forms';
 
 // interface Frequency {
 //   name: string;
@@ -20,6 +20,17 @@ export class AddNewReportComponent implements OnInit {
   currentStep: any;
   el: any;
   selectedValues: string[] = [];
+
+  drugsArray: Array<any> = [
+    { name: 'Cimzia', value: 'Cimzia' },
+    { name: 'Levetiracetam', value: 'Levetiracetam' },
+    { name: 'Briviact', value: 'Briviact' },
+    { name: 'Vimpat', value: 'Vimpat' },
+    { name: 'Keppra', value: 'Keppra' },
+    { name: 'Xyrem', value: 'Xyrem' },
+    { name: 'Others', value: 'Others' },
+  ];
+
   multiStep = new FormGroup({
     patientDetails: new FormGroup({
       patient_initials: new FormControl(''),
@@ -27,13 +38,66 @@ export class AddNewReportComponent implements OnInit {
       menstrual_date: new FormControl(''),
       estimated_dob: new FormControl(''),
     }),
-    // patientDetails: new FormGroup({
-    //   patient_initials: new FormControl(null),
-    //   patient_dob: new FormControl(null),
-    //   menstrual_date: new FormControl(null),
-    //   estimated_dob: new FormControl(null),
-    // }),
+    drugs : new FormArray([]),
+    medicationArray: new FormArray([
+      // initially it will be empty
+        //  new FormGroup({
+        //     drugName: new FormControl(''),
+        //     dosage : new FormControl(''),
+        //     dosageUnit : new FormControl(''),
+        //     frequency : new FormControl(''),
+        //     startMedicationDate : new FormControl(''),
+        //     stopMedicationDate : new FormControl(''),
+        //     indication : new FormControl('')
+        // })
+    ]),
   });
+
+  onDrugsChange(e:any){
+
+    const drugsArrayTemp:FormArray = this.multiStep.get('drugs') as FormArray;
+    const medArray:FormArray = this.multiStep.get('medicationArray') as FormArray;
+    
+    if(e.target.checked){
+      drugsArrayTemp.push(new FormControl(e.target.value));
+    }  else {
+      let i: number = 0;
+      drugsArrayTemp.controls.forEach((item) => {
+        if (item.value == e.target.value) {
+          drugsArrayTemp.removeAt(i); 
+          medArray.removeAt(i); // removing the med details at index i
+          return;
+        }
+        i++;
+      });
+    }
+
+
+
+    // console.log(drugsArrayTemp.value);
+
+   
+
+    if(e.target.checked){
+      const medication = new FormGroup({
+        drugName : new FormControl(e.target.value),
+        dosage : new FormControl(''),
+        dosageUnit : new FormControl(''),
+        frequency : new FormControl(''),
+        startMedicationDate : new FormControl(''),
+        stopMedicationDate : new FormControl(''),
+        indication : new FormControl('')
+      })
+      //this.medication.get('drugName')
+      medArray.push(medication);
+    } else {
+      
+    }
+  }
+
+  get drugs() {
+    return this.multiStep.get('drugs') as FormArray;
+  }
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {
     // this.frequencies = [
@@ -74,7 +138,7 @@ export class AddNewReportComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log('hello');
+    console.log(this.multiStep.value);
   }
   // alignCenter(currentStep: any) {}
 }
