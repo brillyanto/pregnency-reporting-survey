@@ -88,33 +88,34 @@ export class AddNewReportComponent implements OnInit {
       menstrual_date: new FormControl(''),
       estimated_dob: new FormControl(''),
     }),
-    drugs : new FormArray([]),
+    drugs: new FormArray([]),
     medicationArray: new FormArray([
       // initially it will be empty
-        //  new FormGroup({
-        //     drugName: new FormControl(''),
-        //     dosage : new FormControl(''),
-        //     dosageUnit : new FormControl(''),
-        //     frequency : new FormControl(''),
-        //     startMedicationDate : new FormControl(''),
-        //     stopMedicationDate : new FormControl(''),
-        //     indication : new FormControl('')
-        // })
+      //  new FormGroup({
+      //     drugName: new FormControl(''),
+      //     dosage : new FormControl(''),
+      //     dosageUnit : new FormControl(''),
+      //     frequency : new FormControl(''),
+      //     startMedicationDate : new FormControl(''),
+      //     stopMedicationDate : new FormControl(''),
+      //     indication : new FormControl('')
+      // })
     ]),
   });
 
-  onDrugsChange(e:any){
+  onDrugsChange(e: any) {
+    const drugsArrayTemp: FormArray = this.multiStep.get('drugs') as FormArray;
+    const medArray: FormArray = this.multiStep.get(
+      'medicationArray'
+    ) as FormArray;
 
-    const drugsArrayTemp:FormArray = this.multiStep.get('drugs') as FormArray;
-    const medArray:FormArray = this.multiStep.get('medicationArray') as FormArray;
-    
-    if(e.target.checked){
+    if (e.target.checked) {
       drugsArrayTemp.push(new FormControl(e.target.value));
-    }  else {
+    } else {
       let i: number = 0;
       drugsArrayTemp.controls.forEach((item) => {
         if (item.value == e.target.value) {
-          drugsArrayTemp.removeAt(i); 
+          drugsArrayTemp.removeAt(i);
           medArray.removeAt(i); // removing the med details at index i
           return;
         }
@@ -122,20 +123,19 @@ export class AddNewReportComponent implements OnInit {
       });
     }
     // console.log(drugsArrayTemp.value);
-      if(e.target.checked){
+    if (e.target.checked) {
       const medication = new FormGroup({
-        drugName : new FormControl(e.target.value),
-        dosage : new FormControl(''),
-        dosageUnit : new FormControl(''),
-        frequency : new FormControl(''),
-        startMedicationDate : new FormControl(''),
-        stopMedicationDate : new FormControl(''),
-        indication : new FormControl('')
-      })
+        drugName: new FormControl(e.target.value),
+        dosage: new FormControl(''),
+        dosageUnit: new FormControl(''),
+        frequency: new FormControl(''),
+        startMedicationDate: new FormControl(''),
+        stopMedicationDate: new FormControl(''),
+        indication: new FormControl(''),
+      });
       //this.medication.get('drugName')
       medArray.push(medication);
     } else {
-      
     }
   }
 
@@ -157,7 +157,7 @@ export class AddNewReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.step = 5;
+    // this.step = 2;
     this.el = this.elRef.nativeElement.querySelector('.form');
     this.mainEl = this.elRef.nativeElement.querySelector('.main');
     // this.reactiveForm = new FormGroup({});

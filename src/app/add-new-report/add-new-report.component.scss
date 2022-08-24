@@ -7,7 +7,8 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.15px;
-  color: #0000001f;
+  // color: #0000001f;
+  color: #00000099;
 
   &::placeholder {
     font-size: 16px;
@@ -330,8 +331,16 @@
     }
 
     .form-control {
+      .input-group-wrapper {
+        width: 265px;
+        display: flex;
+        & > * {
+          width: 50%;
+        }
+      }
       label {
-        // margin-bottom:
+        margin-bottom: 3px;
+        display: inline-block;
         font-size: 16px;
         letter-spacing: 0.15px;
         line-height: 24px;
@@ -341,9 +350,6 @@
         @include default_input-style;
         width: 265px;
         height: 40px;
-      }
-      select {
-        margin-top: 23px;
       }
 
       input[type="date"] {
@@ -454,7 +460,7 @@
         letter-spacing: 0.15px;
       }
       &--group {
-        // width: 265px;
+        width: 260px;
         height: 40px;
         display: flex;
 

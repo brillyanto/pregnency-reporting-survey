@@ -27,7 +27,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FollowUpComponent,
     AeInPregnancyComponent,
     ReporterInfoComponent,
-    // PatientDetailsComponent,
     AddFollowUpComponent,
     AddNewReportComponent,
     StepsComponent,
