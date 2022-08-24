@@ -15,6 +15,7 @@ export class AddNewReportComponent implements OnInit {
   // reactiveForm: FormGroup;
   // frequencies: Frequency[];
   // selectedFrequency: Frequency;
+  activeIndex = 1;
   mainEl: any;
   step = 1;
   currentStep: any;
@@ -106,13 +107,16 @@ export class AddNewReportComponent implements OnInit {
     this.el = this.elRef.nativeElement.querySelector('.form');
     this.mainEl = this.elRef.nativeElement.querySelector('.main');
     // this.reactiveForm = new FormGroup({});
-    console.log(this.multiStep);
+    // console.log(this.multiStep);
+    // this.activeIndex = this.step;
   }
   onClickNext() {
+    this.activeIndex++;
     if (this.step === 5) {
       return;
     } else {
       this.step = this.step + 1;
+
       if (this.step > 4) {
         this.renderer.addClass(this.el, 'align__center');
         this.renderer.addClass(this.mainEl, 'max-height');

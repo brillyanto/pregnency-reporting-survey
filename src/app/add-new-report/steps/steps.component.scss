@@ -1,7 +1,7 @@
 .container {
   width: 267px;
   height: 500px;
-  position:fixed;
+  position: fixed;
   right: 50px;
   color: #fff;
   &::after {
@@ -34,6 +34,7 @@
     margin-top: 34px;
     list-style: none;
     &-step {
+      // &:nth-child(){}
       padding-left: 55px;
       // margin-left: 20px;
       position: relative;
@@ -42,7 +43,7 @@
         height: 23px;
         width: 23px;
         border-radius: 50%;
-        background-color: #ffffff73;
+        background-color: rgba(255, 255, 255, 0.451);
         position: absolute;
         left: 13px;
         top: 50%;
@@ -61,6 +62,14 @@
       }
       &:not(:first-child) {
         margin-top: 42px;
+      }
+      &.active {
+        &::before {
+          background-color: #f0e50a;
+        }
+      }
+      &.success::before {
+        background-color: #1cdb05fa;
       }
     }
   }
