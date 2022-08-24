@@ -1,8 +1,9 @@
 // import { style } from '@angular/animations';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Form, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 // interface Frequency {
 //   name: string;
@@ -101,6 +102,24 @@ export class AddNewReportComponent implements OnInit {
       //     indication : new FormControl('')
       // })
     ]),
+    medicalHistory: new FormGroup({
+      patientMedicalHistory: new FormControl(''),
+    }),
+    complications: new FormGroup({
+      previousPregnancyComplications: new FormControl(''),
+      pregnancyOutcomeDate: new FormControl(''),
+      pregnancyOutcome: new FormControl(''),
+      newBornGender: new FormControl(''),
+      height: new FormControl(''),
+      heightUnits: new FormControl(''),
+      weight: new FormControl(''),
+      weightUnits: new FormControl(''),
+      apgarScore:new FormControl(''),
+      newBornSufferedCongInfo :new FormControl(''),
+      riskFactorsForReportedMalformations :new FormControl(''),
+      congMalfRelatedToMedications :new FormControl(''),
+    })
+
   });
 
   onDrugsChange(e: any) {
@@ -188,10 +207,67 @@ export class AddNewReportComponent implements OnInit {
     }
   }
   onSubmit() {
+
     console.log(this.multiStep.value);
+
+    this.surveyJson.patient.estimatedBirthDate = this.multiStep.value.patientDetails?.estimated_dob || '';
+    this.surveyJson.patient.firstDayLMP = this.multiStep.value.patientDetails?.menstrual_date || '';
+    this.surveyJson.patient.patientDateOfBirth = this.multiStep.value.patientDetails?.patient_dob || '';
+    this.surveyJson.patient.patientInitials = this.multiStep.value.patientDetails?.patient_initials || '';
+
+    this.surveyJson.product[0].medicationTakenByPatient = this.multiStep.value.drugs || [];
+
+    this.multiStep.value.medicationArray?.forEach((regimenItem: any, i) => {
+      // console.log('regimen +',i);
+      // console.log(regimenItem);
+      // const NewRegimen = {
+      //   drugName:regimenItem.drugName,
+      //   dose: regimenItem.dosage,
+      //   units:regimenItem.dosageUnit,
+      //   frequency: regimenItem.frequency,
+      //   startDate: regimenItem.startMedicationDate,
+      //   endDate: regimenItem.stopMedicationDate,
+      //   indication: regimenItem.indication
+      // };
+      // console.log(NewRegimen);
+      this.surveyJson.product[0].regimen.drugName = regimenItem.drugName;
+      this.surveyJson.product[0].regimen.dose = regimenItem.dosage;
+      this.surveyJson.product[0].regimen.units = regimenItem.dosageUnit;
+      this.surveyJson.product[0].regimen.frequency = regimenItem.frequency;
+      this.surveyJson.product[0].regimen.startDate = regimenItem.startMedicationDate;
+      this.surveyJson.product[0].regimen.endDate = regimenItem.stopMedicationDate;
+      this.surveyJson.product[0].regimen.indication = regimenItem.indication;     
+    });
+
+    this.surveyJson.medicalHistory.patientMedicalHistory = this.multiStep.value.medicalHistory?.patientMedicalHistory || '';
+
+    this.surveyJson.complications.previousPregnancyComplications[0] = this.multiStep.value.complications?.previousPregnancyComplications || '';
+    this.surveyJson.complications.pregnancyOutcomeDate = this.multiStep.value.complications?.pregnancyOutcomeDate || '';
+    this.surveyJson.complications.pregnancyOutcome[0] = this.multiStep.value.complications?.pregnancyOutcome || '';
+    this.surveyJson.complications.newBornGender = this.multiStep.value.complications?.newBornGender || '';
+    this.surveyJson.complications.height = parseInt(this.multiStep.value.complications?.height || '');
+    this.surveyJson.complications.heightUnits = this.multiStep.value.complications?.heightUnits|| '';
+    this.surveyJson.complications.weight = parseInt(this.multiStep.value.complications?.weight || '');
+    this.surveyJson.complications.weightUnits = this.multiStep.value.complications?.weightUnits || '';
+    this.surveyJson.complications.apgarScore = this.multiStep.value.complications?.apgarScore || '';
+    this.surveyJson.complications.newBornSufferedCongInfo = this.multiStep.value.complications?.newBornSufferedCongInfo || '';
+    this.surveyJson.complications.riskFactorsForReportedMalformations = this.multiStep.value.complications?.riskFactorsForReportedMalformations || '';
+    this.surveyJson.complications.congMalfRelatedToMedications = this.multiStep.value.complications?.congMalfRelatedToMedications || '';
+
+    console.log(this.surveyJson);
+
     this.onClickNext();
     // send the data to the server
-    //this.http.post()
+    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJicmlsbHkiLCJpYXQiOjE2NjEzNDIzMDh9.2u35XpKBLbLI5p-EtspiRoqmHGwZIOfjxqf1NtXOsWlBdu7eotgTy8RUzoemxaNtXOfdetQJdEDDgyn05VshEA';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'Authorization': `Bearer ${token}`
+    });
+    AuthInterceptor.accessToken = token;
+    this.http.post('http://172.168.1.82:8080/hilitloginservice/auth/capeicaseintake/capeicaseintakeservice/caseIntakeService/ucbFormSubmit',  this.surveyJson, {headers})
+    .subscribe((res:any)=>{
+      console.log('response',res);
+    });
   }
   // alignCenter(currentStep: any) {}
 }

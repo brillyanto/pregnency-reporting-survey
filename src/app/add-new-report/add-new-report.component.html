@@ -242,10 +242,10 @@
           </p-tabView>
         </div>
       </div>
-      <div class="card" *ngIf="step === 3">
+      <div class="card" *ngIf="step === 3" formGroupName="medicalHistory">
         <h3 class="title">Medical History</h3>
         <p class="text">
-          Please, provide patient´s medical history (free text)
+          Please, provide patient's medical history (free text)
         </p>
         <textarea
           class="textarea"
@@ -255,9 +255,10 @@
           rows="8"
           style="resize: none"
           placeholder="Medical history"
+          formControlName="patientMedicalHistory"
         ></textarea>
       </div>
-      <div class="card" *ngIf="step === 4">
+      <div class="card" *ngIf="step === 4" formGroupName="complications">
         <h3 class="card__title">Complications</h3>
 
         <p class="section__title">
@@ -267,47 +268,47 @@
         <div class="radio__group">
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="No complications in the past" />
               <label>No complications in the past</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Gestational Diabetes" />
               <label>Gestational Diabetes</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Miscarriage" />
               <label>Miscarriage</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Preeclapsia" />
               <label>Preeclapsia</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Choice Abortion" />
               <label>Choice Abortion</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Preterm birth" />
               <label>Preterm birth</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Ectopic or molar pregnancy" />
               <label>Ectopic or molar pregnancy</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Unknown" />
               <label>Unknown</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="previousPregnancyComplications" value="Fetal death" />
               <label>Fetal death</label>
             </div>
           </div>
@@ -317,7 +318,7 @@
         </p>
         <div class="input__date">
           <label>Date of pregnancy outcome</label>
-          <input type="date" />
+          <input type="date" formControlName="pregnancyOutcomeDate"/>
         </div>
         <div class="radio__group">
           <p class="radio__group-title">
@@ -325,31 +326,32 @@
           </p>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Born alive at term" />
               <label>Born alive at term</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Misscarriage" />
               <label>Misscarriage</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Born preterm Live (before week 38)" />
               <label>Born preterm Live (before week 38)</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Choice Abortion" />
               <label>Choice Abortion</label>
             </div>
           </div>
           <div class="radio__group-row">
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Stillbirth" />
               <label>Stillbirth</label>
             </div>
             <div class="form-control">
-              <input type="radio" name="complications" />
+              <input type="radio" formControlName="pregnancyOutcome" value="Abortion of choice for medical reasons (ectopic pregnancy,
+              molar or others)" />
               <label
                 >Abortion of choice for medical reasons (ectopic pregnancy,
                 molar or others)</label
@@ -363,15 +365,15 @@
         <div class="radio__group radio__group--sm">
           <p class="radio__group-title">Gender</p>
           <div class="radio__group-input">
-            <input type="radio" name="gender" />
+            <input type="radio" formControlName="newBornGender" value="Male" />
             <label>Male</label>
           </div>
           <div class="radio__group-input">
-            <input type="radio" name="gender" />
+            <input type="radio" formControlName="newBornGender" value="Female" />
             <label>Female</label>
           </div>
           <div class="radio__group-input">
-            <input type="radio" name="gender" />
+            <input type="radio" formControlName="newBornGender" value="Other" />
             <label>Other</label>
           </div>
         </div>
@@ -380,9 +382,9 @@
           <div class="input-control">
             <label>Length</label>
             <div class="input-control--group">
-              <input type="text" class="input input--sm" placeholder="Height" />
-              <select>
-                <option value="" disabled selected>Unit</option>
+              <input type="text" formControlName="height" class="input input--sm" placeholder="Height" />
+              <select formControlName="heightUnits">
+                <option value="" disabled selected>--Unit--</option>
                 <option value="cm">Cm</option>
                 <option value="inch">Inch</option>
               </select>
@@ -391,9 +393,9 @@
           <div class="input-control">
             <label>Weight</label>
             <div class="input-control--group">
-              <input type="text" class="input input--sm" placeholder="Weight" />
-              <select>
-                <option value="" disabled selected>Unit</option>
+              <input type="text" formControlName="weight" class="input input--sm" placeholder="Weight" />
+              <select formControlName="weightUnits">
+                <option value="" disabled selected>--Unit--</option>
                 <option value="cm">Kg</option>
                 <option value="inch">Pound</option>
               </select>
@@ -402,7 +404,7 @@
           <div class="input-control">
             <label>Apgar Score</label>
             <div class="input-control--group">
-              <input type="text" class="input" placeholder="Score" />
+              <input type="text" formControlName="apgarScore" class="input" placeholder="Score" />
             </div>
           </div>
         </div>
@@ -419,12 +421,12 @@
               rows="10"
               style="resize: none"
               placeholder="details"
+              formControlName="newBornSufferedCongInfo"
             ></textarea>
           </div>
           <div class="textarea__wrapper">
             <label class="textarea__wrapper-title"
-              >Has the newborn suffered congenital malformation(s)/defect(s)?
-              please provide details for each defect</label
+              >Please specify the family history or any other risk factors for the reported malformation(s) </label
             >
             <textarea
               class="textarea"
@@ -432,12 +434,12 @@
               rows="10"
               style="resize: none"
               placeholder="details"
+              formControlName="riskFactorsForReportedMalformations"
             ></textarea>
           </div>
           <div class="textarea__wrapper">
             <label class="textarea__wrapper-title"
-              >Has the newborn suffered congenital malformation(s)/defect(s)?
-              please provide details for each defect</label
+              >Is the congenital malformation considered related to any of the medication(s) used before or during pregnancy? If so, please specify the drug name and duration of exposure. </label
             >
             <textarea
               class="textarea"
@@ -445,6 +447,7 @@
               rows="10"
               style="resize: none"
               placeholder="details"
+              formControlName="congMalfRelatedToMedications"
             ></textarea>
           </div>
         </div>
