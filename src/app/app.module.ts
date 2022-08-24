@@ -25,7 +25,6 @@ import { TableModule } from 'primeng/table';
     FollowUpComponent,
     AeInPregnancyComponent,
     ReporterInfoComponent,
-    // PatientDetailsComponent,
     AddFollowUpComponent,
     AddNewReportComponent,
     StepsComponent,
