@@ -177,6 +177,10 @@ export class AddNewReportComponent implements OnInit {
     }
   }
   onClickPrev() {
+    if (this.activeIndex > 1) {
+      this.activeIndex--;
+    }
+
     if (this.step === 1) {
       console.log('you are on the first section');
       return;
