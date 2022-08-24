@@ -1,6 +1,8 @@
 // import { style } from '@angular/animations';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Form, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // interface Frequency {
 //   name: string;
@@ -15,7 +17,58 @@ export class AddNewReportComponent implements OnInit {
   // reactiveForm: FormGroup;
   // frequencies: Frequency[];
   // selectedFrequency: Frequency;
+<<<<<<< HEAD
   activeIndex = 1;
+=======
+
+  public surveyJson = {
+    patient: {
+        patientInitials: "VM",
+        patientDateOfBirth: "22-08-2022 09:06:55",
+        estimatedBirthDate: "22-08-2022 09:06:55",
+        firstDayLMP: "22-08-2022 09:06:55"
+    },
+    product: [
+        {
+            medicationTakenByPatient: [
+                "CIMZIA"
+            ],
+            
+            regimen: {
+                drugName: "Prothiaden",
+                indication: "AHUS",
+                dose: "1",
+                units: "mg",
+                frequency: "regular",
+                startDate: "22-08-2022 09:06:55",
+                endDate: "22-08-2022 09:06:55"
+            }
+        }
+    ],
+    medicalHistory: {
+        patientMedicalHistory: "value"
+    },
+    complications: {
+        previousPregnancyComplications: [
+            "Unknown"
+        ],
+        pregnancyOutcomeDate: "22-08-2022 09:06:55",
+        pregnancyOutcome: [
+            "Miscarriage"
+        ],
+        height: 123,
+        heightUnits: "CM",
+        weight: 80,
+        weightUnits: "Kilogram",
+        newBornGender: "Male",
+        apgarScore: "100",
+        newBornSufferedCongInfo: "yes",
+        riskFactorsForReportedMalformations: "Miscarriage",
+        congMalfRelatedToMedications: "yes"
+    }
+};
+
+>>>>>>> 4784c0793ea257eed09d681e47d88d70b5dd0bb8
   mainEl: any;
   step = 1;
   currentStep: any;
@@ -94,12 +147,17 @@ export class AddNewReportComponent implements OnInit {
     return this.multiStep.get('drugs') as FormArray;
   }
 
-  constructor(private elRef: ElementRef, private renderer: Renderer2) {
+  constructor(private http:HttpClient, 
+    private router:Router,
+    private elRef: ElementRef, private renderer: Renderer2) {
     // this.frequencies = [
     //   { name: 'Regular' },
     //   { name: 'Weekly' },
     //   { name: 'Monthly' },
     // ];
+    
+    //console.log(JSON.stringify(this.surveyJson));
+
   }
 
   ngOnInit(): void {
@@ -113,6 +171,7 @@ export class AddNewReportComponent implements OnInit {
   onClickNext() {
     this.activeIndex++;
     if (this.step === 5) {
+      
       return;
     } else {
       this.step = this.step + 1;
@@ -137,6 +196,9 @@ export class AddNewReportComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.multiStep.value);
+    this.onClickNext();
+    // send the data to the server
+    //this.http.post()
   }
   // alignCenter(currentStep: any) {}
 }

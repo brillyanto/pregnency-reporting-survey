@@ -17,6 +17,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { DropdownModule } from 'primeng/dropdown';
 import { GenerateReportComponent } from './generate-report/generate-report.component';
 import { TableModule } from 'primeng/table';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,16 @@ import { TableModule } from 'primeng/table';
     TabViewModule,
     DropdownModule,
     TableModule,
+    HttpClientModule,
     // CheckboxModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
