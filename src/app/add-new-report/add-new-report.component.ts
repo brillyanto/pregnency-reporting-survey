@@ -21,6 +21,7 @@ export class AddNewReportComponent implements OnInit {
   // <<<<<<< HEAD
   activeIndex = 1;
   // =======
+  public refno = '. . .';
 
   public surveyJson = {
     patient: {
@@ -219,7 +220,6 @@ export class AddNewReportComponent implements OnInit {
     this.surveyJson.patient.firstDayLMP = this.multiStep.value.patientDetails?.menstrual_date || '';
     this.surveyJson.patient.patientDateOfBirth = this.multiStep.value.patientDetails?.patient_dob || '';
     this.surveyJson.patient.patientInitials = this.multiStep.value.patientDetails?.patient_initials || '';
-
     this.surveyJson.product[0].medicationTakenByPatient = this.multiStep.value.drugs || [];
 
     this.multiStep.value.medicationArray?.forEach((regimenItem: any, i) => {
@@ -263,15 +263,20 @@ export class AddNewReportComponent implements OnInit {
 
     this.onClickNext();
     // send the data to the server
-    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJicmlsbHkiLCJpYXQiOjE2NjEzNDIzMDh9.2u35XpKBLbLI5p-EtspiRoqmHGwZIOfjxqf1NtXOsWlBdu7eotgTy8RUzoemxaNtXOfdetQJdEDDgyn05VshEA';
+    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJicmlsbHkiLCJpYXQiOjE2NjEzNDc2ODV9.G4983fY1HymcHIe3kNFMaJaOPqPHeAsa5tf1jW3MmNd5x5WngJFPUtHeu6SkAuVJwmSL6dRr8dhA-rmxXrRkmg';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${token}`
     });
-    AuthInterceptor.accessToken = token;
+    
+    AuthInterceptor.accessToken = token; // ADDED THROUGH THE INTERCEPTOR
     this.http.post('http://172.168.1.82:8080/hilitloginservice/auth/capeicaseintake/capeicaseintakeservice/caseIntakeService/ucbFormSubmit',  this.surveyJson, {headers})
     .subscribe((res:any)=>{
       console.log('response',res);
+      if(res.message === 'Success'){
+        let resultTxt = res.result;
+        this.refno = resultTxt.split(':')[1];
+        console.log(this.refno);
+      }
     });
   }
   // alignCenter(currentStep: any) {}
